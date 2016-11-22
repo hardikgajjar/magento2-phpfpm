@@ -50,6 +50,9 @@ RUN curl -Ls -O https://launchpad.net/libmemcached/1.0/1.0.18/+download/libmemca
   && cd php-memcached && git checkout php7 && phpize && ./configure --disable-memcached-sasl && make && make install && cd .. && rm -rf php-memcached \
   && echo "extension=memcached.so" > /usr/local/etc/php/conf.d/memcached.ini
 
+# install node, npm and grunt
+RUN curl -sL https://deb.nodesource.com/setup_6.x | bash - && apt-get install -y nodejs && npm install -g grunt
+
 ENV PHP_MEMORY_LIMIT 2G
 ENV PHP_PORT 9000
 ENV PHP_PM dynamic
